@@ -1,0 +1,20 @@
+{
+	"KPlugin": {
+		"Name": "Truely Maximized",
+		"Description": "Truely maximizes your screen space by hiding the title bars of your windows when they are maximized.",
+		"Icon": "preferences-system-windows",
+		"Version": "beta",
+		"Id": "truely-maximized",
+		"License": "GPLv3",
+		"Website": "https://github.com/fin444/truely-maximized",
+		"Authors": [
+			{
+				"Name": "fin444",
+				"Email": "fin444_dev@proton.me"
+			}
+		]
+	},
+	"X-Plasma-API": "javascript",
+	"X-Plasma-MainScript": "code/main.js",
+	"KPackageStructure": "KWin/Script"
+}
