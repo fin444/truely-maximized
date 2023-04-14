@@ -16,5 +16,6 @@
 	},
 	"X-Plasma-API": "javascript",
 	"X-Plasma-MainScript": "code/main.js",
-	"KPackageStructure": "KWin/Script"
+	"KPackageStructure": "KWin/Script",
+	"X-KWin-Border-Activate": true
 }
