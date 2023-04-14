@@ -46,7 +46,7 @@ workspace.clientMaximizeSet.connect((client, horizontalMaximized, verticalMaximi
 function screenEdgeActivated() {
     for (client of workspace.clientList()) {
     	if (client.active) {
-    		if (isManaged(client)) {
+    		if (isManaged(client) && isMaximized(client)) {
     			client.noBorder = !client.noBorder;
     		}
     		return;
