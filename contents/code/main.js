@@ -22,12 +22,13 @@ function isManaged(client) {
 }
 
 // listeners
-workspace.clientAdded.connect((client) => {
+function clientAdded(client) {
 	tryManage(client);
 	if (isManaged(client) && isMaximized(client)) {
 		client.noBorder = true;
 	}
-});
+}
+workspace.clientAdded.connect(clientAdded);
 
 workspace.clientRemoved.connect((client) => {
 	if (isManaged(client)) {
@@ -43,5 +44,5 @@ workspace.clientMaximizeSet.connect((client, horizontalMaximized, verticalMaximi
 
 // init
 for (client of workspace.clientList()) {
-	tryManage(client);
+	clientAdded(client);
 }
