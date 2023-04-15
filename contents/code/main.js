@@ -5,7 +5,7 @@ function isMaximized(client) {
 }
 
 // management code
-const blacklist = ["yakuake"];
+var blacklist = []; // initialized in init()
 const managed = [];
 
 function tryManage(client) {
@@ -73,9 +73,13 @@ function initScreenEdges() {
 }
 
 // init
+function init() {
+	blacklist = readConfig("blacklist", "yakuake").split(",").filter((name) => name.length != 0);
+	initScreenEdges();
+}
+options.configChanged.connect(init);
+init();
+
 for (client of workspace.clientList()) {
 	clientAdded(client);
 }
-
-options.configChanged.connect(initScreenEdges);
-initScreenEdges();
