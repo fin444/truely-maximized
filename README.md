@@ -4,7 +4,18 @@ A Kwin script that truely maximizes your screen space by hiding the title bars o
 
 Based on (but not forked from) [bahamondev/hide-titles](https://github.com/bahamondev/hide-titles)
 
-## Setup
+## Features
+
+* Dynamically hides/shows window titles based on maximization
+* Automatically filters out potential breakages (e.g. GTK applications)
+* Configurable blacklist
+* Optional screen edge listener to toggle it off/on in case you need the title bar for a moment
+
+## Contributing
+
+PRs are welcome! Also feel free to contact me via email [fin444_dev@proton.me](mailto:fin444_dev@proton.me)
+
+### Setup
 
 Just clone the repo. `make` commands have been set up to do all the things.
 
