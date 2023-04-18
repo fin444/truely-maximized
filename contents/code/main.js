@@ -32,7 +32,7 @@ workspace.clientAdded.connect(clientAdded);
 
 workspace.clientRemoved.connect((client) => {
 	if (isManaged(client)) {
-		managed.remove(client.frameId);
+		managed.splice(managed.indexOf(client.frameId), 1);
 	}
 });
 
