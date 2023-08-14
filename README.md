@@ -11,6 +11,8 @@ Based on (but not forked from) [bahamondev/hide-titles](https://github.com/baham
 * Configurable blacklist
 * Optional screen edge listener to toggle it off/on in case you need the title bar for a moment
 
+![usage demonstration](https://images.pling.com/img/00/00/71/36/84/2018573/video.gif)
+
 ## Contributing
 
 PRs are welcome! Also feel free to contact me via email [fin444_dev@proton.me](mailto:fin444_dev@proton.me)
