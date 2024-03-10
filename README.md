@@ -2,6 +2,10 @@
 
 A Kwin script that truely maximizes your screen space by hiding the title bars of your windows when they are maximized.
 
+Plasma 6 version: https://www.pling.com/p/2136524/
+
+Plasma 5 version: https://www.pling.com/p/2018573/
+
 Based on (but not forked from) [bahamondev/hide-titles](https://github.com/bahamondev/hide-titles)
 
 ## Features
