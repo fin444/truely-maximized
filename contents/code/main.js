@@ -1,74 +1,73 @@
 // utils
-function isMaximized(client) {
-    var area = workspace.clientArea(KWin.MaximizeArea, client);
-    return client.width >= area.width && client.height >= area.height;
+function isMaximized(window) {
+	var area = workspace.clientArea(KWin.MaximizeArea, window);
+	return window.width >= area.width && window.height >= area.height;
 }
 
 // management code
 var blacklist = []; // initialized in init()
 const managed = [];
 
-function tryManage(client) {
-	if (blacklist.includes(client.resourceClass.toString())) {
+function tryManage(window) {
+	if (blacklist.includes(window.resourceClass)) {
 		return;
 	}
-	if (client.noBorder) {
-		return; // If the border is already disabled, something else is managing it. We don't want to step on that.
+	if (window.noBorder) {
+		return; // if the border is already disabled, something else is managing it - don't mess with that
 	}
-	managed.push(client.internalId);
+	managed.push(window.internalId);
 }
-function isManaged(client) {
-	return managed.includes(client.internalId);
+function isManaged(window) {
+	return managed.includes(window.internalId);
 }
 
 // listeners
-function clientAdded(client) {
-	tryManage(client);
-	if (isManaged(client)) {
-		if (isMaximized(client)) {
-			client.noBorder = true;
+function windowAdded(window) {
+	tryManage(window);
+	if (isManaged(window)) {
+		if (isMaximized(window)) {
+			window.noBorder = true;
 		}
-		client.maximizedChanged.connect(() => {
-			client.noBorder = isMaximized(client);
+		window.maximizedChanged.connect(() => {
+			window.noBorder = isMaximized(window);
 		});
 	}
 }
-workspace.windowAdded.connect(clientAdded);
+workspace.windowAdded.connect(windowAdded);
 
-workspace.windowRemoved.connect((client) => {
-	if (isManaged(client)) {
-		managed.splice(managed.indexOf(client.internalId), 1);
+workspace.windowRemoved.connect((window) => {
+	if (isManaged(window)) {
+		managed.splice(managed.indexOf(window.internalId), 1);
 	}
 });
 
-// screen edge listener
 function screenEdgeActivated() {
-    for (client of workspace.windowList()) {
-    	if (client.active) {
-    		if (isManaged(client) && isMaximized(client)) {
-    			client.noBorder = !client.noBorder;
-    		}
-    		return;
-    	}
-    }
+	for (window of workspace.windowList()) {
+		if (window.active) {
+			if (isManaged(window) && isMaximized(window)) {
+				window.noBorder = !window.noBorder;
+			}
+			return;
+		}
+	}
 }
 
 // magic code to register a screen edge listener that the user can then configure in screen edges settings
 // it's just done this way, there isn't really an explanation in the docs
 var registeredBorders = [];
 function initScreenEdges() {
-    for (var i in registeredBorders) {
-        unregisterScreenEdge(registeredBorders[i]);
-    }
-    registeredBorders = [];
-    var borders = readConfig("BorderActivate", "").toString().split(",");
-    for (var i in borders) {
-        var border = parseInt(borders[i]);
-        if (isFinite(border)) {
-            registeredBorders.push(border);
-            registerScreenEdge(border, screenEdgeActivated);
-        }
-    }
+	for (var i in registeredBorders) {
+		unregisterScreenEdge(registeredBorders[i]);
+	}
+	registeredBorders = [];
+	var borders = readConfig("BorderActivate", "").toString().split(",");
+	for (var i in borders) {
+		var border = parseInt(borders[i]);
+		if (isFinite(border)) {
+			registeredBorders.push(border);
+			registerScreenEdge(border, screenEdgeActivated);
+		}
+	}
 }
 
 // init
@@ -79,6 +78,7 @@ function init() {
 options.configChanged.connect(init);
 init();
 
-for (client of workspace.windowList()) {
-	clientAdded(client);
+// not part of init() bc it is called when config changed
+for (window of workspace.windowList()) {
+	windowAdded(window);
 }
