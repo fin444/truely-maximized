@@ -15,36 +15,35 @@ function tryManage(client) {
 	if (client.noBorder) {
 		return; // If the border is already disabled, something else is managing it. We don't want to step on that.
 	}
-	managed.push(client.frameId);
+	managed.push(client.internalId);
 }
 function isManaged(client) {
-	return managed.includes(client.frameId);
+	return managed.includes(client.internalId);
 }
 
 // listeners
 function clientAdded(client) {
 	tryManage(client);
-	if (isManaged(client) && isMaximized(client)) {
-		client.noBorder = true;
+	if (isManaged(client)) {
+		if (isMaximized(client)) {
+			client.noBorder = true;
+		}
+		client.maximizedChanged.connect(() => {
+			client.noBorder = isMaximized(client);
+		});
 	}
 }
-workspace.clientAdded.connect(clientAdded);
+workspace.windowAdded.connect(clientAdded);
 
-workspace.clientRemoved.connect((client) => {
+workspace.windowRemoved.connect((client) => {
 	if (isManaged(client)) {
-		managed.splice(managed.indexOf(client.frameId), 1);
-	}
-});
-
-workspace.clientMaximizeSet.connect((client, horizontalMaximized, verticalMaximized) => {
-	if (isManaged(client)) {
-		client.noBorder = isMaximized(client);
+		managed.splice(managed.indexOf(client.internalId), 1);
 	}
 });
 
 // screen edge listener
 function screenEdgeActivated() {
-    for (client of workspace.clientList()) {
+    for (client of workspace.windowList()) {
     	if (client.active) {
     		if (isManaged(client) && isMaximized(client)) {
     			client.noBorder = !client.noBorder;
@@ -80,6 +79,6 @@ function init() {
 options.configChanged.connect(init);
 init();
 
-for (client of workspace.clientList()) {
+for (client of workspace.windowList()) {
 	clientAdded(client);
 }

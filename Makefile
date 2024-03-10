@@ -5,10 +5,10 @@ build: clean
 	@zip truely-maximized.kwinscript -r contents LICENSE metadata.json
 
 uninstall:
-	@-plasmapkg2 -t kwinscript -r truely-maximized
+	@-kpackagetool6 -t KWin/Script -r truely-maximized
 
 install: uninstall build
-	@plasmapkg2 -t kwinscript -i truely-maximized.kwinscript
+	@kpackagetool6 -t KWin/Script -i truely-maximized.kwinscript
 	@rm -f truely-maximized.kwinscript
 
 debug:

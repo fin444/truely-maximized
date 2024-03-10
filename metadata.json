@@ -15,8 +15,8 @@
 		]
 	},
 	"X-Plasma-API": "javascript",
-	"X-Plasma-MainScript": "code/main.js",
 	"KPackageStructure": "KWin/Script",
+	"X-Plasma-API-Minimum-Version": "6.0",
 	"X-KWin-Border-Activate": true,
 	"X-KDE-ConfigModule": "kwin/effects/configs/kcm_kwin4_genericscripted"
 }
