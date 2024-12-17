@@ -1,5 +1,10 @@
 // utils
-function isMaximized(window) {
+var shouldHideTiled = false;
+
+function shouldHideTitle(window) {
+	if (shouldHideTiled && window.tile !== null) {
+		return true;
+	}
 	var area = workspace.clientArea(KWin.MaximizeArea, window);
 	return window.width >= area.width && window.height >= area.height;
 }
@@ -25,12 +30,16 @@ function isManaged(window) {
 function windowAdded(window) {
 	tryManage(window);
 	if (isManaged(window)) {
-		if (isMaximized(window)) {
+		if (shouldHideTitle(window)) {
 			window.noBorder = true;
 		}
-		window.maximizedChanged.connect(() => {
-			window.noBorder = isMaximized(window);
-		});
+		function statusChanged() {
+			window.noBorder = shouldHideTitle(window);
+		}
+		window.maximizedChanged.connect(statusChanged);
+		if (shouldHideTiled) {
+			window.tileChanged.connect(statusChanged);
+		}
 	}
 }
 workspace.windowAdded.connect(windowAdded);
@@ -44,7 +53,7 @@ workspace.windowRemoved.connect((window) => {
 function screenEdgeActivated() {
 	for (window of workspace.windowList()) {
 		if (window.active) {
-			if (isManaged(window) && isMaximized(window)) {
+			if (isManaged(window) && shouldHideTitle(window)) {
 				window.noBorder = !window.noBorder;
 			}
 			return;
@@ -73,6 +82,7 @@ function initScreenEdges() {
 // init
 function init() {
 	blacklist = readConfig("blacklist", "yakuake").split(",").filter((name) => name.length != 0);
+	shouldHideTiled = readConfig("shouldHideTiled", false);
 	initScreenEdges();
 }
 options.configChanged.connect(init);

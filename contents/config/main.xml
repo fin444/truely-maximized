@@ -5,5 +5,8 @@
 		<entry name="blacklist" type="String">
 			<default>yakuake</default>
 		</entry>
+		<entry name="shouldHideTiled" type="Bool">
+			<default>false</default>
+		</entry>
 	</group>
 </kcfg>
