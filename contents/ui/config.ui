@@ -44,6 +44,20 @@
     <widget class="QLineEdit" name="kcfg_blacklist"/>
    </item>
    <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_optional">
+     <property name="text">
+      <string>Optional Features:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="kcfg_shouldHideTiled">
      <property name="text">
       <string>Also &amp;hide title bar for tiled windows</string>
