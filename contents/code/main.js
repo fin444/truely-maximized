@@ -36,10 +36,10 @@ function windowAdded(window) {
 		function statusChanged() {
 			window.noBorder = shouldHideTitle(window);
 		}
+		// always connect all signals even if the related option is disabled
+		// to support config hot reloading if KWin supports that
 		window.maximizedChanged.connect(statusChanged);
-		if (shouldHideTiled) {
-			window.tileChanged.connect(statusChanged);
-		}
+		window.tileChanged.connect(statusChanged);
 	}
 }
 workspace.windowAdded.connect(windowAdded);
