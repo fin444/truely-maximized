@@ -14,6 +14,7 @@ Based on (but not forked from) [bahamondev/hide-titles](https://github.com/baham
 * Automatically filters out potential breakages (e.g. GTK applications)
 * Configurable blacklist
 * Optional screen edge listener to toggle it off/on in case you need the title bar for a moment
+* Optionally also hide window titles for tiled windows
 
 ![usage demonstration](https://images.pling.com/img/00/00/71/36/84/2018573/video.gif)
 
