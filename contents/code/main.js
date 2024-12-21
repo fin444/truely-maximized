@@ -50,11 +50,17 @@ workspace.windowRemoved.connect((window) => {
 	}
 });
 
+var lastScreenEdge = 0;
 function screenEdgeActivated() {
+	if (Date.now() - lastScreenEdge < 200) {
+		// a bug in kwin sometimes causes a double trigger, so we enforce a 200ms cooldown
+		return;
+	}
 	for (window of workspace.windowList()) {
 		if (window.active) {
 			if (isManaged(window) && shouldHideTitle(window)) {
 				window.noBorder = !window.noBorder;
+				lastScreenEdge = Date.now();
 			}
 			return;
 		}
