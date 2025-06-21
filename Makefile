@@ -12,4 +12,4 @@ install: uninstall build
 	@rm -f truely-maximized.kwinscript
 
 debug:
-	journalctl -g "js: " -f
+	journalctl -g "js:" -f
