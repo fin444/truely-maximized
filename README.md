@@ -30,4 +30,4 @@ Just clone the repo. `make` commands have been set up to do all the things.
 * `make clean` - Remove the `.kwinscript` file
 * `make install` - Install the script to your Plasma
 * `make uninstall` - Uninstall the script from your Plasma
-* `make debug` - See `print()` outputs (unfortunately shows all kwin scripts on your system and does not update in real time)
+* `make debug` - See `print()` outputs (shows all kwin scripts on your system)
