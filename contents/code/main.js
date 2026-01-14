@@ -6,7 +6,7 @@ function shouldHideTitle(window) {
 		return true;
 	}
 	var area = workspace.clientArea(KWin.MaximizeArea, window);
-	return window.width >= area.width && window.height >= area.height;
+	return Math.round(window.width) >= area.width && Math.round(window.height) >= area.height;
 }
 
 // management code
