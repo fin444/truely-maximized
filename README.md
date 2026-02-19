@@ -18,16 +18,10 @@ Based on (but not forked from) [bahamondev/hide-titles](https://github.com/baham
 
 ![usage demonstration](https://images.pling.com/img/00/00/71/36/84/2018573/video.gif)
 
-## Contributing
-
-PRs are welcome! Also feel free to contact me via email [fin444_dev@proton.me](mailto:fin444_dev@proton.me)
-
-### Setup
-
-Just clone the repo. `make` commands have been set up to do all the things.
+## Development
 
 * `make build` - Build the `.kwinscript` file
 * `make clean` - Remove the `.kwinscript` file
-* `make install` - Install the script to your Plasma
-* `make uninstall` - Uninstall the script from your Plasma
-* `make debug` - See `print()` outputs (shows all kwin scripts on your system)
+* `make install` - Install the script, you must disable and re-enable it to activate fully
+* `make uninstall` - Uninstall the script
+* `make debug` - See `print()` outputs (shows all kwin scripts on your system, some systems won't log print statements for some reason)
