@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>755</width>
-    <height>142</height>
+    <height>379</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -29,19 +29,12 @@
       </font>
      </property>
      <property name="text">
-      <string>Due to a limitation of Kwin, you must disable and re-enable the script for changes to take effect.</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:400; text-decoration: underline;&quot;&gt;Due to a limitation in Kwin, you must disable and re-enable the script for changes to take effect.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_windowBlacklist">
-     <property name="text">
-      <string>Window Class Blacklist (comma-separated)</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="kcfg_windowBlacklist"/>
+    <widget class="KSeparator" name="kseparator_6"/>
    </item>
    <item>
     <widget class="Line" name="line">
@@ -51,11 +44,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_optional">
-     <property name="text">
-      <string>Optional Features:</string>
-     </property>
-    </widget>
+    <widget class="KSeparator" name="kseparator_5"/>
    </item>
    <item>
     <widget class="QCheckBox" name="kcfg_shouldHideTiled">
@@ -64,8 +53,31 @@
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="KSeparator" name="kseparator_2"/>
+   </item>
+   <item>
+    <widget class="KSeparator" name="kseparator_4"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_windowBlacklist">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ignore Windows&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;comma-separated list of window classes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="kcfg_windowBlacklist"/>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KSeparator</class>
+   <extends>QFrame</extends>
+   <header>kseparator.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
