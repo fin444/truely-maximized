@@ -12,7 +12,7 @@ Based on (but not forked from) [bahamondev/hide-titles](https://github.com/baham
 
 * Dynamically hides/shows window titles based on maximization
 * Automatically filters out potential breakages (e.g. GTK applications)
-* Configurable blacklist
+* Configurable blacklist for windows and monitors
 * Optional screen edge listener to toggle it off/on in case you need the title bar for a moment
 * Optionally also hide window titles for tiled windows
 

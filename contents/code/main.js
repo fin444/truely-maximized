@@ -2,15 +2,19 @@
 var shouldHideTiled = false;
 
 function shouldHideTitle(window) {
-	if (shouldHideTiled && window.tile !== null) {
+	if (monitorBlacklist.includes(window.output.name)) {
+		return false;
+	} else if (shouldHideTiled && window.tile !== null) {
 		return true;
+	} else {
+		var area = workspace.clientArea(KWin.MaximizeArea, window);
+		return Math.ceil(window.width) >= area.width && Math.ceil(window.height) >= area.height;
 	}
-	var area = workspace.clientArea(KWin.MaximizeArea, window);
-	return Math.ceil(window.width) >= area.width && Math.ceil(window.height) >= area.height;
 }
 
 // management code
 var windowBlacklist = [];
+var monitorBlacklist = [];
 const managed = [];
 
 function tryManage(window) {
@@ -88,6 +92,7 @@ function initScreenEdges() {
 // init
 function init() {
 	windowBlacklist = readConfig("windowBlacklist", "yakuake").split(",").filter((name) => name.length != 0);
+	monitorBlacklist = readConfig("monitorBlacklist", "").split(",").filter((name) => name.length != 0);
 	shouldHideTiled = readConfig("shouldHideTiled", false);
 	initScreenEdges();
 }

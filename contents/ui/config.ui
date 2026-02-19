@@ -69,6 +69,22 @@
    <item>
     <widget class="QLineEdit" name="kcfg_windowBlacklist"/>
    </item>
+   <item>
+    <widget class="KSeparator" name="kseparator"/>
+   </item>
+   <item>
+    <widget class="KSeparator" name="kseparator_3"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_monitorBlacklist">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ignore Monitors&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;comma-separated list of monitor names, can be found using kscreen-doctor --outputs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="kcfg_monitorBlacklist"/>
+   </item>
   </layout>
  </widget>
  <customwidgets>
