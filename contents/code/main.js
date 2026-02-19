@@ -10,11 +10,11 @@ function shouldHideTitle(window) {
 }
 
 // management code
-var blacklist = []; // initialized in init()
+var windowBlacklist = [];
 const managed = [];
 
 function tryManage(window) {
-	if (blacklist.includes(window.resourceClass)) {
+	if (windowBlacklist.includes(window.resourceClass)) {
 		return;
 	}
 	if (window.noBorder) {
@@ -87,7 +87,7 @@ function initScreenEdges() {
 
 // init
 function init() {
-	blacklist = readConfig("blacklist", "yakuake").split(",").filter((name) => name.length != 0);
+	windowBlacklist = readConfig("windowBlacklist", "yakuake").split(",").filter((name) => name.length != 0);
 	shouldHideTiled = readConfig("shouldHideTiled", false);
 	initScreenEdges();
 }

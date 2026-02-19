@@ -34,14 +34,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_blacklist">
+    <widget class="QLabel" name="label_windowBlacklist">
      <property name="text">
       <string>Window Class Blacklist (comma-separated)</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="kcfg_blacklist"/>
+    <widget class="QLineEdit" name="kcfg_windowBlacklist"/>
    </item>
    <item>
     <widget class="Line" name="line">
