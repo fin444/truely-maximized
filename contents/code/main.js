@@ -54,6 +54,13 @@ workspace.windowRemoved.connect((window) => {
 	}
 });
 
+function cursorPosChanged() {
+	if (shouldHideTitle(workspace.activeWindow) && workspace.cursorPos.y > (workspaceHeight * 0.1)) {
+		workspace.activeWindow.noBorder = true;
+	}
+}
+workspace.cursorPosChanged.connect(cursorPosChanged);
+
 var lastScreenEdge = 0;
 function screenEdgeActivated() {
 	if (Date.now() - lastScreenEdge < 200) {
@@ -63,7 +70,7 @@ function screenEdgeActivated() {
 	for (window of workspace.windowList()) {
 		if (window.active) {
 			if (isManaged(window) && shouldHideTitle(window)) {
-				window.noBorder = !window.noBorder;
+				window.noBorder = false;
 				lastScreenEdge = Date.now();
 			}
 			return;
