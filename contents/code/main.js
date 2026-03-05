@@ -55,7 +55,7 @@ workspace.windowRemoved.connect((window) => {
 });
 
 function cursorPosChanged() {
-	if (shouldHideTitle(workspace.activeWindow) && workspace.cursorPos.y > (workspaceHeight * 0.1)) {
+	if (isManaged(workspace.activeWindow) && shouldHideTitle(workspace.activeWindow) && workspace.cursorPos.y > (workspace.workspaceHeight * 0.1)) {
 		workspace.activeWindow.noBorder = true;
 	}
 }
