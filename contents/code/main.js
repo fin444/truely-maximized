@@ -55,11 +55,15 @@ workspace.windowRemoved.connect((window) => {
 });
 
 function cursorPosChanged() {
+	var activeScreen = workspace.activeScreen;
+	if (activeScreen == null) return;
+	var screenHeight = activeScreen.geometry.height;
+	var localCursorPos = activeScreen.mapFromGlobal(workspace.cursorPos);
 	if (
 		registeredBorders.length > 0
 		&& isManaged(workspace.activeWindow)
 		&& shouldHideTitle(workspace.activeWindow)
-		&& workspace.cursorPos.y > (workspace.workspaceHeight * 0.1)
+		&& localCursorPos.y > 150
 	) {
 		workspace.activeWindow.noBorder = true;
 	}
