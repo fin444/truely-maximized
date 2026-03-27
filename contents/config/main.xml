@@ -11,5 +11,8 @@
 		<entry name="monitorBlacklist" type="String">
 			<default></default>
 		</entry>
+		<entry name="autoHideAt" type="Int">
+			<default>200</default>
+		</entry>
 	</group>
 </kcfg>
