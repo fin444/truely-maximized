@@ -1,5 +1,6 @@
 // utils
 var shouldHideTiled = false;
+var autoHideAt = 200;
 
 function shouldHideTitle(window) {
 	if (monitorBlacklist.includes(window.output.name)) {
@@ -54,6 +55,23 @@ workspace.windowRemoved.connect((window) => {
 	}
 });
 
+function cursorPosChanged() {
+	if (autoHideAt == 0) return;
+	var activeScreen = workspace.activeScreen;
+	if (activeScreen == null) return;
+	var screenHeight = activeScreen.geometry.height;
+	var localCursorPos = activeScreen.mapFromGlobal(workspace.cursorPos);
+	if (
+		registeredBorders.length > 0
+		&& isManaged(workspace.activeWindow)
+		&& shouldHideTitle(workspace.activeWindow)
+		&& localCursorPos.y > autoHideAt
+	) {
+		workspace.activeWindow.noBorder = true;
+	}
+}
+workspace.cursorPosChanged.connect(cursorPosChanged);
+
 var lastScreenEdge = 0;
 function screenEdgeActivated() {
 	if (Date.now() - lastScreenEdge < 200) {
@@ -63,7 +81,7 @@ function screenEdgeActivated() {
 	for (window of workspace.windowList()) {
 		if (window.active) {
 			if (isManaged(window) && shouldHideTitle(window)) {
-				window.noBorder = !window.noBorder;
+				window.noBorder = autoHideAt == 0 && !window.noBorder;
 				lastScreenEdge = Date.now();
 			}
 			return;
@@ -94,6 +112,7 @@ function init() {
 	windowBlacklist = readConfig("windowBlacklist", "yakuake").split(",").filter((name) => name.length != 0);
 	monitorBlacklist = readConfig("monitorBlacklist", "").split(",").filter((name) => name.length != 0);
 	shouldHideTiled = readConfig("shouldHideTiled", false);
+	autoHideAt = readConfig("autoHideAt", 200);
 	initScreenEdges();
 }
 options.configChanged.connect(init);

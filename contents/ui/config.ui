@@ -60,6 +60,32 @@
     <widget class="KSeparator" name="kseparator_4"/>
    </item>
    <item>
+    <widget class="QLabel" name="label_autoHideAt">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Auto Hide Offset&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;automatially re-hides the titlebar at this distance (0 disables auto hide)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSpinBox" name="kcfg_autoHideAt">
+     <property name="suffix">
+      <string> px</string>
+     </property>
+     <property name="maximum">
+      <number>10000</number>
+     </property>
+     <property name="singleStep">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="KSeparator" name="kseparator_7"/>
+   </item>
+   <item>
+    <widget class="KSeparator" name="kseparator_8"/>
+   </item>
+   <item>
     <widget class="QLabel" name="label_windowBlacklist">
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Ignore Windows&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;comma-separated list of window classes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
